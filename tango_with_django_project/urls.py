@@ -18,9 +18,12 @@ from django.urls import path
 from django.urls import include  # Task 3.5
 from rango import views  # Task 3.4
 
+from django.conf import settings  # Task 4.3
+from django.conf.urls.static import static  # Task 4.3
+
 urlpatterns = [
-    path('', views.index, name='index'),  # Task 3.4
-    path('rango/', include('rango.urls')),  # Task 3.5
+    path("", views.index, name="index"),  # Task 3.4
+    path("rango/", include("rango.urls")),  # Task 3.5
     # # The above maps any URLs starting with rango/ to be handled by rango.
-    path('admin/', admin.site.urls),
-]
+    path("admin/", admin.site.urls)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # Task 4.3
