@@ -22,7 +22,7 @@ def index(request):
     context_dict["pages"] = page_list
 
     visitor_cookie_handler(request)
-    context_dict['visits'] = request.session['visits']
+    # context_dict['visits'] = request.session['visits']
 
     # Obtain our Response object early so we can add cookie information.
     response = render(request, 'rango/index.html', context=context_dict)
@@ -32,6 +32,8 @@ def index(request):
 
 def about(request):
     context_dict = {"creatorname": "Scott Glidden"}
+    visitor_cookie_handler(request)
+    context_dict['visits'] = request.session['visits']
     return render(request, "rango/about.html", context=context_dict)
 
 
